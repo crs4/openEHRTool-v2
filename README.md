@@ -2,10 +2,10 @@
 
 A tool meant to make it easier to interact with a **EHRBase** server. This is the version 2 of openEHRTool. The old one can be found at https://github.com/crs4/openEHR-tool
 
-| Version | Sync/Async | Frontend | Backend | Redis use |
-| ------  | ---- | -------- | ------- | ----- | 
-|   1     | Synchronous | HTML,JS,Bootstrap | Flask | Activity log |
-|   2     | Asynchronous | Vue | FastAPI | Activity log, Caching of artefacts id |
+| Version | Sync/Async | Frontend | Backend | Redis use | Authorization |
+| ------  | ---- | -------- | ------- | ----- | --------- |
+|   1     | Synchronous | HTML,JS,Bootstrap | Flask | Activity log | configuration file | 
+|   2     | Asynchronous | Vue3 | FastAPI | Activity log, Caching of artefacts id | login |
 
 # How to install and run
 
