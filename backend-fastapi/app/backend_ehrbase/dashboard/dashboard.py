@@ -30,7 +30,10 @@ async def get_dashboard_data_ehrbase(
         response = await fetch_get_data(client=client, url=myurl, headers=headers)
         print(response.status_code)
         if 199 < response.status_code < 210:
-            aqls = json.loads(response.text)["versions"]
+            if "versions" in json.loads(response.text):
+                aqls = json.loads(response.text)["versions"]
+            else:
+                aqls = json.loads(response.text)
             metrics["aqlsCount"] = len(aqls)
         else:
             metrics["aqlsCount"] = "Unavailable"

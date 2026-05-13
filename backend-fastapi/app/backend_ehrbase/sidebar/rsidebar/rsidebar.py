@@ -166,8 +166,6 @@ async def get_sidebar_queries_ehrbase(
                 and redis_client.llen("key_queries") > 0
             ):
                 # retrieve data from redis
-                print("GGGGGGGGGGGGG")
-                logger.debug("GGGGGGGGGG")
                 queries = redis_client.lrange("key_queries", 0, -1)
                 queries = [json.loads(q) for q in queries]
                 if len(queries) != 0:
@@ -182,7 +180,12 @@ async def get_sidebar_queries_ehrbase(
         response = await fetch_get_data(client=client, url=myurl, headers=headers)
         print(response.status_code)
         if 199 < response.status_code < 210:
+            if "versions" not in json.loads(response.text):
+                return ["Unavailable"]
             queries = json.loads(response.text)["versions"]
+            if len(queries) == 0:
+                queries = ["Unavailable"]
+                return queries
             if redis_client and get_redis_status(redis_client) == "ok":
                 redis_client.delete("key_queries")
                 for q in queries:
